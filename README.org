@@ -43,7 +43,7 @@ that the variable =evil-want-fine-undo= is =nil= (this is the default in
 
 ** Status
 
-This is still experimental, and more of a exercise in =emacs lisp=: there might
+This is still experimental, and more of an exercise in =emacs lisp=: there might
 be evil-enabled buffers that change their text automatically, or in special
 ways, without explicit user action. This could therefore trigger evil undo
 breaks by themselves in that buffer, which may, or may not be meaningful there.
