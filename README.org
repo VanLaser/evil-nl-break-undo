@@ -1,0 +1,56 @@
+* evil-nl-break-undo
+
+This minor mode does only one thing: it breaks the evil undo sequence when the
+buffer is changed over a line boundary (i.e. when at least one line is
+created, or deleted in/from the buffer). It is inspired from the following Vim
+mapping: 
+
+#+BEGIN_SRC vimscript
+inoremap <silent> <cr> <c-g>u<cr>
+#+END_SRC
+
+... which it also generalizes so that:
+
+  a. it doesn't depend on the actual keys pressed
+  b. it also handles text removal
+
+
+Instead of trying to map every possible newline-inserting key that exists in the
+large world of Emacs modes and users, =evil-nl-break-undo= follows the buffer
+changes directly; in this way, it doesn't matter what key was pressed, or how
+the user changed the buffer: it could have been with =RET=, or maybe with
+=M-RET=, mapped to one utility command or another (insert a new list item; or
+continue a comment on the next line; indent; add a paren etc.). The same thing
+happens when text is removed in insert state: if the text deleted includes a
+newline character, the current evil-based undo sequence is split.
+
+** What does it mean?
+
+It means that, for example, after you write an entire paragraph in insert state,
+and then you hit =u= in normal state to undo, changes are undone line by line,
+instead of the whole paragraph disappearing with one swift stroke.
+
+** Intended usage
+   
+#+BEGIN_SRC emacs-lisp
+(add-hook 'text-mode-hook #'evil-nl-break-undo-mode)
+(add-hook 'prog-mode-hook #'evil-nl-break-undo-mode)
+#+END_SRC
+
+The mode depends on, and assumes that =evil-mode= is enabled in the buffer, and
+that the variable =evil-want-fine-undo= is =nil= (this is the default in
+=evil-mode=; IIRC, not so in *Spacemacs*).
+
+** Status
+
+This is still experimental, and more of a exercise in =emacs lisp=: there might
+be evil-enabled buffers that change their text automatically, or in special
+ways, without explicit user action. This could therefore trigger evil undo
+breaks by themselves in that buffer, which may, or may not be meaningful there.
+It would be best then to have such buffers configured for evil emacs state by
+default (or any other state different than evil insert state). Not sure though
+if having this minor mode enabled, and with such a buffer in insert state, would
+do any harm.
+
+It probably doesn't deserve to be a whole minor mode for such a small thing; but
+it's my first! and anyway, Emacs has too many minor modes already.
