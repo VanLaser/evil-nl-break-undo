@@ -11,8 +11,8 @@ inoremap <silent> <cr> <c-g>u<cr>
 
 ... which it also generalizes so that:
 
-  a. it doesn't depend on the actual keys pressed
-  b. it also handles text removal
+- it doesn't depend on the actual keys pressed
+- it also handles text removal
 
 
 Instead of trying to map every possible newline-inserting key that exists in the
