@@ -10,7 +10,9 @@ the current evil undo step."
 	     (not evil-want-fine-undo)
 	     (evil-insert-state-p)
 	     (< beg end)
-	     (save-excursion (goto-char beg) (search-forward "\n" end t)))
+	     (save-excursion
+	       (save-match-data		;don't spoil user searches
+		 (goto-char beg) (search-forward "\n" end t))))
     (evil-end-undo-step)
     (evil-echo "Break undo")
     (evil-start-undo-step)))
