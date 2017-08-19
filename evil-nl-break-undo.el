@@ -16,7 +16,7 @@ the current evil undo step."
 	     (< beg end)
 	     (save-excursion
 	       (save-match-data		;don't spoil user searches
-		 (goto-char beg) (search-forward evil-break-undo-regexp end t))))
+		 (goto-char beg) (re-search-forward evil-break-undo-regexp end t))))
     (evil-end-undo-step)
     (evil-echo "Break undo")
     (evil-start-undo-step)))
