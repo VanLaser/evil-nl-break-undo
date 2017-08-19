@@ -16,8 +16,8 @@ the current evil undo step."
     (evil-start-undo-step)))
 
 (defun evil-nl-break-undo--enable ()
-    (add-hook 'before-change-functions    #'evil-nl-break-undo--maybe t t)
-    (add-hook 'after-change-functions     #'evil-nl-break-undo--maybe t t))
+    (add-hook 'before-change-functions    #'evil-nl-break-undo--maybe nil t)
+    (add-hook 'after-change-functions     #'evil-nl-break-undo--maybe nil t))
 
 (defun evil-nl-break-undo--disable ()
     (remove-hook 'before-change-functions    #'evil-nl-break-undo--maybe t)
