@@ -40,9 +40,12 @@
 
 (require 'evil)
 
-(defvar evil-break-undo-regexp "\n"
+(defvar evil-nl-break-undo-regexp "\n"
   "REGEXP used to break an evil undo sequence.
 The search takes place on the text range that is being changed.")
+
+(defvar evil-nl-break-undo-lighter " ↵"
+  "Mode-line text.")
 
 (defun evil-nl-break-undo--maybe (beg end &optional len)
   "Local hook run before and after the buffer is changed.
@@ -54,7 +57,7 @@ the current evil undo step."
 	     (< beg end)
 	     (save-excursion
 	       (save-match-data		;don't spoil user searches
-		 (goto-char beg) (re-search-forward evil-break-undo-regexp end t))))
+		 (goto-char beg) (re-search-forward evil-nl-break-undo-regexp end t))))
     (evil-end-undo-step)
     (evil-echo "Break undo")
     (evil-start-undo-step)))
@@ -74,10 +77,9 @@ change in insert state includes a newline, i.e. when a change in
 the buffer steps over a newline (either by inserting, or by
 removing one)."
 
-  :lighter " ↵"
+  :lighter evil-nl-break-undo-lighter
   (if evil-nl-break-undo-mode
       (evil-nl-break-undo--enable)
     (evil-nl-break-undo--disable)))
 
 (provide 'evil-nl-break-undo)
-
