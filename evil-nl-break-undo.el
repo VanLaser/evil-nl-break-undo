@@ -1,8 +1,10 @@
-;;; Evil 'break undo when line changes' mode --- -*- lexical-binding: t; coding: utf-8 -*-
+;;; evil-nl-break-undo.el --- -*- lexical-binding: t; coding: utf-8 -*-
 
 ;; Copyright (C) 2017 Gabriel Lazar
 
 ;; Author: VanLaser <Gabriel.Lazar@com.utcluj.ro>
+;; Version 1.0
+;; Package-Requires ((evil "0"))
 ;; URL: https://github.com/VanLaser/evil-nl-break-undo
 
 ;; This file is NOT part of GNU Emacs.
@@ -23,10 +25,9 @@
 ;; along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 ;;; Commentary:
-;;
-;; Simple minor mode that breaks evil's undo sequence when the buffer
-;; is changed over a line boundary.
-;;
+
+;; Simple minor mode that breaks evil's undo sequence when the buffer is changed
+;; over a line boundary .. or, when you decide: see `evil-nl-break-undo-regexp'.
 
 ;;; Usage:
 ;;
@@ -83,3 +84,5 @@ removing one)."
     (evil-nl-break-undo--disable)))
 
 (provide 'evil-nl-break-undo)
+;;; evil-nl-break-undo.el ends here
+
