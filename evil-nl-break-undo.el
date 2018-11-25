@@ -1,4 +1,4 @@
-;;; evil-nl-break-undo.el --- -*- lexical-binding: t; coding: utf-8 -*-
+;;; evil-nl-break-undo.el --- Break evil's undo sequence on CR -*- lexical-binding: t; coding: utf-8 -*-
 
 ;; Copyright (C) 2017 Gabriel Lazar
 
