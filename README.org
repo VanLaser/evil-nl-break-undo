@@ -14,7 +14,6 @@ inoremap <silent> <cr> <c-g>u<cr>
 - it doesn't depend on the actual keys pressed
 - it also handles text removal
 
-
 Instead of trying to map every possible newline-inserting key that exists in the
 large world of Emacs modes and users, =evil-nl-break-undo= follows the buffer
 changes directly; in this way, it doesn't matter what key was pressed, or how
@@ -37,20 +36,28 @@ instead of the whole paragraph disappearing with one swift stroke.
 (add-hook 'prog-mode-hook #'evil-nl-break-undo-mode)
 #+END_SRC
 
+Or, the equivalent, with =use-package=, and since the package is now on MELPA:
+
+#+BEGIN_SRC emacs-lisp
+(use-package evil-nl-break-undo
+  :ensure t
+  :hook ((text-mode prog-mode) . evil-nl-break-undo-mode))
+#+END_SRC
+
 The mode depends on, and assumes that =evil-mode= is enabled in the buffer, and
-that the variable =evil-want-fine-undo= is =nil= (this is the default in
-=evil-mode=; IIRC, not so in *Spacemacs*).
+that the variable =evil-want-fine-undo= is =nil= (this is the default in =evil-mode=;
+IIRC, not so in *Spacemacs*).
 
 ** Status
 
-This is still experimental, and more of an exercise in =emacs lisp=: there might
-be evil-enabled buffers that change their text automatically, or in special
-ways, without explicit user action. This could therefore trigger evil undo
-breaks by themselves in that buffer, which may, or may not be meaningful there.
-It would be best then to have such buffers configured for evil emacs state by
-default (or any other state different than evil insert state). Not sure though
-if having this minor mode enabled, and with such a buffer in insert state, would
-do any harm.
+This is still experimental (but working well for quite some time now!), and more
+of an exercise in =emacs lisp=: there might be evil-enabled buffers that change
+their text automatically, or in special ways, without explicit user action. This
+could therefore trigger evil undo breaks by themselves in that buffer, which
+may, or may not be meaningful there. It would be best then to have such buffers
+configured for evil emacs state by default (or any other state different than
+evil insert state). Not sure though if having this minor mode enabled, and with
+such a buffer in insert state, would do any harm.
 
 It probably doesn't deserve to be a whole minor mode for such a small thing; but
 it's my first! and anyway, Emacs has too many minor modes already.
