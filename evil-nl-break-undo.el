@@ -4,7 +4,7 @@
 
 ;; Author: VanLaser <Gabriel.Lazar@com.utcluj.ro>
 ;; Version 1.0
-;; Package-Requires ((evil "0"))
+;; Package-Requires: ((evil "0"))
 ;; URL: https://github.com/VanLaser/evil-nl-break-undo
 
 ;; This file is NOT part of GNU Emacs.
